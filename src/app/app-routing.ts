@@ -7,7 +7,7 @@ export const routes: Routes = [
     loadComponent: () => import("./views/home/home.component").then(comp => comp.HomeComponent),
   },
   {
-    path: 'test',
-    loadComponent: () => import('./views/test/test.component').then(comp => comp.TestComponent),
-  }
+    path: ':component',
+    loadComponent: () => import("./views/doc/doc.component").then(comp => comp.DocComponent),
+  },
 ];
