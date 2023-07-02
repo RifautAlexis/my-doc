@@ -1,4 +1,5 @@
 import {
+  CUSTOM_ELEMENTS_SCHEMA,
   Component,
   Input,
   OnInit,
@@ -7,16 +8,21 @@ import {
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MarkdownModule, MarkdownService } from 'ngx-markdown';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MarkdownModule } from 'ngx-markdown';
+import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import {
+  MyButtonComponent,
+  MyChipsComponent,
+} from 'src/app/my-custom-components/index';
 
 @Component({
   selector: 'app-doc',
   standalone: true,
-  imports: [CommonModule, MarkdownModule],
+  imports: [CommonModule, MarkdownModule, MyButtonComponent, MyChipsComponent],
   templateUrl: './doc.component.html',
   styleUrls: ['./doc.component.scss'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DocComponent implements OnInit {
   @Input({ required: true }) componentName!: string;
@@ -30,13 +36,15 @@ export class DocComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.componentName = this.route.snapshot.paramMap.get('component')!;
 
-    this.httpClient.get(`assets/content/${this.componentName}.md`, { responseType: 'text' }).subscribe({
-      next: (data) => {
-        this.markdown.set(data);
-      },
-      error: (err) => {
-        this.router.navigate(['']);
-      },
-    });
+    this.httpClient
+      .get(`assets/content/${this.componentName}.md`, { responseType: 'text' })
+      .subscribe({
+        next: (data) => {
+          this.markdown.set(data);
+        },
+        error: (err) => {
+          this.router.navigate(['']);
+        },
+      });
   }
 }
