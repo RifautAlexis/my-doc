@@ -6,7 +6,7 @@ export function markedOptionsFactory(): MarkedOptions {
   renderer.html = (text: string) => {
     return text.replace(
       /\<\!\-\-\- example\(.+\) -->/,
-      `<custom-element label=FromCustomRender></custom-element>`
+      `<foundation-examples [componentType]="MyChipsComponent"></foundation-examples>`
     );
   };
 

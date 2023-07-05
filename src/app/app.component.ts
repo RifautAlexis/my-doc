@@ -2,12 +2,18 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [RouterModule, MatSidenavModule, MatListModule],
+  imports: [RouterModule, MatSidenavModule, MatListModule, NgFor],
 })
-export class AppComponent {}
+export class AppComponent {
+  navigationItems = [
+    { name: 'My Chips', route: '/my-chips' },
+    { name: 'My Button', route: '/my-button' },
+  ];
+}

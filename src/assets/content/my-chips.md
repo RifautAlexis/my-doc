@@ -1,7 +1,6 @@
 POPO
 <!--- example(MyChipsComponent) -->
 POPO
-<ng-template anchorComponent></ng-template>
 
 ### Features
 

@@ -8,7 +8,7 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { provideHttpClient } from '@angular/common/http';
 import { markedOptionsFactory } from './app/plop/custom-token';
 import { createCustomElement } from '@angular/elements';
-import { MyChipsComponent } from './app/my-custom-components';
+import { FoundationExamplesComponent } from './app/views/foundation-examples/foundation-examples.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -27,12 +27,12 @@ bootstrapApplication(AppComponent, {
   ],
 })
 .then((appRef: ApplicationRef) => {
-  const myChips = createCustomElement(
-		MyChipsComponent, // component for Angular element
+  const foundationExamples = createCustomElement(
+		FoundationExamplesComponent, // component for Angular element
 		{ injector: appRef.injector } // used to inject the component to the DOM
 	);
 
 	// register in a browser
-	customElements.define('custom-element', myChips);
+	customElements.define('foundation-examples', foundationExamples);
 })
 .catch((err) => console.error(err));

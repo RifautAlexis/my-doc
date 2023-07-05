@@ -1,8 +1,9 @@
 <mat-drawer-container class="full-height">
   <mat-drawer mode="side" opened>
     <mat-list>
-      <a mat-list-item href=""> Home </a>
-      <a mat-list-item href="test"> Test </a>
+      <a mat-list-item *ngFor="let item of navigationItems" [href]="item.route">
+        {{ item.name }}
+      </a>
     </mat-list>
   </mat-drawer>
   <mat-drawer-content>
