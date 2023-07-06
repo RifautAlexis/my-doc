@@ -25,7 +25,7 @@ import {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DocComponent implements OnInit {
-  @Input({ required: true }) componentName!: string;
+  componentName?: string | null;
 
   private httpClient = inject(HttpClient);
   private router = inject(Router);
@@ -34,10 +34,19 @@ export class DocComponent implements OnInit {
   markdown: WritableSignal<string> = signal<string>('');
 
   async ngOnInit(): Promise<void> {
-    this.componentName = this.route.snapshot.paramMap.get('component')!;
+    this.componentName = this.route.snapshot.paramMap.get('component');
+    let markdownUrl: string;
+
+    if (!!!this.componentName) {
+      markdownUrl = 'assets/content/getting-started.md';
+    } else {
+      markdownUrl = `assets/content/${this.componentName}.md`;
+    }
 
     this.httpClient
-      .get(`assets/content/${this.componentName}.md`, { responseType: 'text' })
+      .get(markdownUrl, {
+        responseType: 'text',
+      })
       .subscribe({
         next: (data) => {
           this.markdown.set(data);
