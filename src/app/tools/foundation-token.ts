@@ -20,7 +20,8 @@ export function markedOptionsFactory(): MarkedOptions {
   return {
     renderer: renderer,
     gfm: true,
-    breaks: false,
+    breaks: true,
+    headerIds: true,
     pedantic: false,
     smartLists: true,
     smartypants: false,

@@ -1,7 +1,7 @@
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   Component,
-  Input,
+  ElementRef,
   OnInit,
   WritableSignal,
   inject,
@@ -15,21 +15,30 @@ import {
   MyButtonComponent,
   MyChipsComponent,
 } from 'src/app/my-custom-components/index';
+import { DocSideNavComponent } from '../doc-side-nav/doc-side-nav.component';
 
 @Component({
-  selector: 'app-doc',
+  selector: 'doc',
   standalone: true,
-  imports: [CommonModule, MarkdownModule, MyButtonComponent, MyChipsComponent],
+  imports: [
+    CommonModule,
+    MarkdownModule,
+    MyButtonComponent,
+    MyChipsComponent,
+    DocSideNavComponent,
+  ],
   templateUrl: './doc.component.html',
   styleUrls: ['./doc.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DocComponent implements OnInit {
   componentName?: string | null;
+  headings: Element[] = [];
 
   private httpClient = inject(HttpClient);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private elementRef = inject(ElementRef<HTMLElement>);
 
   markdown: WritableSignal<string> = signal<string>('');
 
@@ -55,5 +64,12 @@ export class DocComponent implements OnInit {
           this.router.navigate(['']);
         },
       });
+  }
+
+  onReady(): void {
+    this.headings = this.elementRef.nativeElement
+      .querySelector('markdown')!
+      .querySelectorAll('h1, h2');
+    console.log(this.headings);
   }
 }

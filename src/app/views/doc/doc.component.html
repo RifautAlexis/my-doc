@@ -1,3 +1,5 @@
-<h1>{{ componentName }}</h1>
+<div class="flex">
+  <markdown class="flex-auto" [data]="markdown()" (ready)="onReady()"> </markdown>
 
-<markdown [data]="markdown()"> </markdown>
+  <doc-side-nav class="ms-5 basis-1/12 h-screen sticky top-10" [headings]="headings"></doc-side-nav>
+</div>

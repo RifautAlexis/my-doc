@@ -1,4 +1,4 @@
-<mat-drawer-container class="full-height">
+<mat-drawer-container class="h-full">
   <mat-drawer mode="side" opened>
     <mat-list>
       <a mat-list-item *ngFor="let item of navigationItems" [href]="item.route">
@@ -7,7 +7,7 @@
     </mat-list>
   </mat-drawer>
   <mat-drawer-content>
-    <main>
+    <main class="m-10">
       <router-outlet></router-outlet>
     </main>
   </mat-drawer-content>
