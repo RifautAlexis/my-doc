@@ -10,7 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import {
   MyButtonComponent,
   MyChipsComponent,
@@ -43,6 +43,18 @@ export class DocComponent implements OnInit {
   markdown: WritableSignal<string> = signal<string>('');
 
   async ngOnInit(): Promise<void> {
+    this.getMarkdownFile();
+
+    this.scrollTo();
+  }
+
+  onReady(): void {
+    this.headings = this.elementRef.nativeElement
+      .querySelector('markdown')!
+      .querySelectorAll('h1, h2');
+  }
+
+  private getMarkdownFile() {
     this.componentName = this.route.snapshot.paramMap.get('component');
     let markdownUrl: string;
 
@@ -66,10 +78,21 @@ export class DocComponent implements OnInit {
       });
   }
 
-  onReady(): void {
-    this.headings = this.elementRef.nativeElement
-      .querySelector('markdown')!
-      .querySelectorAll('h1, h2');
-    console.log(this.headings);
+  private scrollTo(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const tree = this.router.parseUrl(this.router.url);
+        if (tree.fragment) {
+          const element = document.getElementById(tree.fragment);
+          if (element) {
+            element.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest',
+            });
+          }
+        }
+      }
+    });
   }
 }
