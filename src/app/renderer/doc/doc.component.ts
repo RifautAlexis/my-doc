@@ -11,10 +11,6 @@ import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import {
-  MyButtonComponent,
-  MyChipsComponent,
-} from 'src/app/my-custom-components/index';
 import { DocSideNavComponent } from '../doc-side-nav/doc-side-nav.component';
 
 @Component({
@@ -23,8 +19,6 @@ import { DocSideNavComponent } from '../doc-side-nav/doc-side-nav.component';
   imports: [
     CommonModule,
     MarkdownModule,
-    MyButtonComponent,
-    MyChipsComponent,
     DocSideNavComponent,
   ],
   templateUrl: './doc.component.html',

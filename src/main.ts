@@ -6,9 +6,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { provideHttpClient } from '@angular/common/http';
-import { markedOptionsFactory } from './app/tools/foundation-token';
+import { markedOptionsFactory } from './app/renderer/tools/foundation-token';
 import { createCustomElement } from '@angular/elements';
-import { FoundationExamplesComponent } from './app/views/foundation-examples/foundation-examples.component';
+import { FoundationExamplesComponent } from './app/renderer/foundation-examples/foundation-examples.component';
 
 bootstrapApplication(AppComponent, {
   providers: [

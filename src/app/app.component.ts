@@ -13,7 +13,7 @@ import { NgFor } from '@angular/common';
 })
 export class AppComponent {
   navigationItems = [
-    { name: 'My Chips', route: '/my-chips' },
-    { name: 'My Button', route: '/my-button' },
+    { name: 'Button', route: '/button' },
+    { name: 'Card', route: '/card' },
   ];
 }

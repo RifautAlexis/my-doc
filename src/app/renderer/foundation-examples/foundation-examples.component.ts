@@ -8,22 +8,21 @@ import {
   ViewContainerRef,
   inject,
 } from '@angular/core';
-import {
-  MyButtonComponent,
-  MyChipsComponent,
-} from 'src/app/my-custom-components';
-import { FoundationDirective } from 'src/app/tools/foundation.directive';
+import { FoundationDirective } from '../tools/foundation.directive';
+import { ButtonOverviewExample, ButtonTypesExample, CardFancyExample, CardMediaSizeExample } from "src/app/components-examples";
 
 const COMPONENT_MAP: Record<string, Type<any>> = {
-  "MyChipsComponent": MyChipsComponent,
-  "MyButtonComponent": MyButtonComponent,
+  "ButtonOverviewExample": ButtonOverviewExample,
+  "ButtonTypesExample": ButtonTypesExample,
+  "CardFancyExample": CardFancyExample,
+  "CardMediaSizeExample": CardMediaSizeExample,
 };
 
 @Component({
   selector: 'foundation-examples',
   standalone: true,
   templateUrl: 'foundation-examples.component.html',
-  imports: [MyChipsComponent],
+  imports: [],
 })
 export class FoundationExamplesComponent implements AfterViewInit {
   private changeDetection = inject(ChangeDetectorRef);
