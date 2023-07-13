@@ -1,13 +1,3 @@
-### Features
-
-- Support Standard Markdown / CommonMark and GFM(GitHub Flavored Markdown);
-- Full-featured: Real-time Preview, Image (cross-domain) upload, Preformatted text/Code blocks/Tables insert, Code fold, Search replace, Read only, Themes, Multi-languages, L18n, HTML entities, Code syntax highlighting...;
-- Markdown Extras : Support ToC (Table of Contents), Emoji, Task lists, @Links...;
-- Compatible with all major browsers (IE8+), compatible Zepto.js and iPad;
-- Support identification, interpretation, fliter of the HTML tags;
-- Support TeX (LaTeX expressions, Based on KaTeX), Flowchart and Sequence Diagram of Markdown extended syntax;
-- Support AMD/CMD (Require.js & Sea.js) Module Loader, and Custom/define editor plugins;
-
 # Examples
 
 ## First example - ButtonOverviewExample
@@ -16,310 +6,99 @@
 ## Second example - ButtonTypesExample
 <!--- example(CardMediaSizeExample) -->
 
-# Editor.md
+`<mat-card>` is a content container for text, photos, and actions in the context of a single subject.
 
-![](https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png)
+<!-- example(card-overview) -->
 
-![](https://img.shields.io/github/stars/pandao/editor.md.svg) ![](https://img.shields.io/github/forks/pandao/editor.md.svg) ![](https://img.shields.io/github/tag/pandao/editor.md.svg) ![](https://img.shields.io/github/release/pandao/editor.md.svg) ![](https://img.shields.io/github/issues/pandao/editor.md.svg) ![](https://img.shields.io/bower/v/editor.md.svg)
+# Basic card sections
 
+The most basic card needs only an `<mat-card>` element with some content. However, Angular Material
+provides a number of preset sections that you can use inside a `<mat-card>`:
 
-**Table of Contents**
+| Element                  | Description                                                    |
+|--------------------------|----------------------------------------------------------------|
+| `<mat-card-header>`      | Section anchored to the top of the card (adds padding)         |
+| `<mat-card-content>`     | Primary card content (adds padding)                            |
+| `<img mat-card-image>`   | Card image. Stretches the image to the container width         |
+| `<mat-card-actions>`     | Container for buttons at the bottom of the card (adds padding) |
+| `<mat-card-footer>`      | Section anchored to the bottom of the card                     |
 
-[TOCM]
+These elements primary serve as pre-styled content containers without any additional APIs. 
+However, the `align` property on `<mat-card-actions>` can be used to position the actions at the 
+`'start'` or `'end'` of the container.
 
-[TOC]
+# Card padding
 
-#H1 header
-##H2 header
-###H3 header
-####H4 header
-#####H5 header
-######H6 header
-#Heading 1 link [Heading link](https://github.com/pandao/editor.md "Heading link")
-##Heading 2 link [Heading link](https://github.com/pandao/editor.md "Heading link")
-###Heading 3 link [Heading link](https://github.com/pandao/editor.md "Heading link")
-####Heading 4 link [Heading link](https://github.com/pandao/editor.md "Heading link") Heading link [Heading link](https://github.com/pandao/editor.md "Heading link")
-#####Heading 5 link [Heading link](https://github.com/pandao/editor.md "Heading link")
-######Heading 6 link [Heading link](https://github.com/pandao/editor.md "Heading link")
+The `<mat-card>` element itself does not add any padding around its content. This allows developers
+to customize the padding to their liking by applying padding to the elements they put in the card.
 
-##Headers (Underline)
+In many cases developers may just want the standard padding specified in the Material Design spec.
+In this case, the `<mat-card-header>`, `<mat-card-content>`, and `<mat-card-footer>` sections can be
+used.
 
-H1 Header (Underline)
-=============
+* `<mat-card-content>` adds standard padding along its sides, as well as along the top if it is the
+  first element in the `<mat-card>`, and along the bottom if it is the last element in the
+  `<mat-card>`.
+* `<mat-card-header>` adds standard padding along its sides and top.
+* `<mat-card-actions>` adds padding appropriate for the action buttons at the bottom of a card. 
 
-H2 Header (Underline)
--------------
+# Card headers
 
-###Characters
-                
-----
+A `<mat-card-header>` can contain any content, but there are several predefined elements
+that can be used to create a rich header to a card. These include:
 
-~~Strikethrough~~ <s>Strikethrough (when enable html tag decode.)</s>
-*Italic*      _Italic_
-**Emphasis**  __Emphasis__
-***Emphasis Italic*** ___Emphasis Italic___
+| Element                  | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `<mat-card-title>`       | A title within the header                            |
+| `<mat-card-subtitle>`    | A subtitle within the header                         |
+| `<img mat-card-avatar>`  | An image used as an avatar within the header         |
 
-Superscript: X<sub>2</sub>，Subscript: O<sup>2</sup>
+In addition to using `<mat-card-title>` and `<mat-card-subtitle>` directly within the
+`<mat-card-header>`, they can be further nested inside a `<mat-card-title-group>` in order arrange
+them with a (non-avatar) image.
 
-**Abbreviation(link HTML abbr tag)**
+# Title groups
 
-The <abbr title="Hyper Text Markup Language">HTML</abbr> specification is maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.
+`<mat-card-title-group>` can be used to combine a title, subtitle, and image into a single section.
+This element can contain:
+* `<mat-card-title>`
+* `<mat-card-subtitle>`
+* One of:
+    * `<img mat-card-sm-image>`
+    * `<img mat-card-md-image>`
+    * `<img mat-card-lg-image>`
 
-###Blockquotes
+# Accessibility
 
-> Blockquotes
+Cards serve a wide variety of scenarios and may contain many different types of content.
+Due to this flexible nature, the appropriate accessibility treatment depends on how you use
+`<mat-card>`.
 
-Paragraphs and Line Breaks
-                    
-> "Blockquotes Blockquotes", [Link](http://localhost/)。
+## Group, region, and landmarks
 
-###Links
+There are several ARIA roles that communicate that a portion of the UI represents some semantically
+meaningful whole. Depending on what the content of the card means to your application, you can apply
+one of [`role="group"`][role-group], [`role="region"`][role-region], or
+[one of the landmark roles][aria-landmarks] to the `<mat-card>` element.
 
-[Links](http://localhost/)
+You do not need to apply a role when using a card as a purely decorative container that does not
+convey a meaningful grouping of related content for a single subject. In these cases, the content
+of the card should follow standard practices for document content.
 
-[Links with title](http://localhost/ "link title")
+## Focus
 
-`<link>` : <https://github.com>
+Depending on how cards are used, it may be appropriate to apply a `tabindex` to the `<mat-card>`
+element. 
 
-[Reference link][id/name] 
+* If cards are a primary mechanism through which user interacts with the application, `tabindex="0"`
+  may be appropriate. 
+* If attention can be sent to the card, but it's not part of the document flow, `tabindex="-1"` may
+  be appropriate.
+* If the card acts as a purely decorative container, it does not need to be tabbable. In this case,
+  the card content should follow normal best practices for tab order.
 
-[id/name]: http://link-url/
+Always test your application to verify the behavior that works best for your users.
 
-GFM a-tail link @pandao
-
-###Code Blocks (multi-language) & highlighting
-
-####Inline code
-
-`$ npm install marked`
-
-####Code Blocks (Indented style)
-
-Indented 4 spaces, like `<pre>` (Preformatted Text).
-
-    <?php
-        echo "Hello world!";
-    ?>
-    
-Code Blocks (Preformatted text):
-
-    | First Header  | Second Header |
-    | ------------- | ------------- |
-    | Content Cell  | Content Cell  |
-    | Content Cell  | Content Cell  |
-
-####Javascript　
-
-```javascript
-function test(){
-	console.log("Hello world!");
-}
- 
-(function(){
-    var box = function(){
-        return box.fn.init();
-    };
-
-    box.prototype = box.fn = {
-        init : function(){
-            console.log('box.init()');
-
-			return this;
-        },
-
-		add : function(str){
-			alert("add", str);
-
-			return this;
-		},
-
-		remove : function(str){
-			alert("remove", str);
-
-			return this;
-		}
-    };
-    
-    box.fn.init.prototype = box.fn;
-    
-    window.box =box;
-})();
-
-var testBox = box();
-testBox.add("jQuery").remove("jQuery");
-```
-
-####HTML code
-
-```html
-<!DOCTYPE html>
-<html>
-    <head>
-        <mate charest="utf-8" />
-        <title>Hello world!</title>
-    </head>
-    <body>
-        <h1>Hello world!</h1>
-    </body>
-</html>
-```
-
-###Images
-
-Image:
-
-![](https://pandao.github.io/editor.md/examples/images/4.jpg)
-
-> Follow your heart.
-
-![](https://pandao.github.io/editor.md/examples/images/8.jpg)
-
-> 图为：厦门白城沙滩 Xiamen
-
-图片加链接 (Image + Link)：
-
-[![](https://pandao.github.io/editor.md/examples/images/7.jpg)](https://pandao.github.io/editor.md/examples/images/7.jpg "李健首张专辑《似水流年》封面")
-
-> 图为：李健首张专辑《似水流年》封面
-                
-----
-
-###Lists
-
-####Unordered list (-)
-
-- Item A
-- Item B
-- Item C
-     
-####Unordered list (*)
-
-* Item A
-* Item B
-* Item C
-
-####Unordered list (plus sign and nested)
-                
-+ Item A
-+ Item B
-    + Item B 1
-    + Item B 2
-    + Item B 3
-+ Item C
-    * Item C 1
-    * Item C 2
-    * Item C 3
-
-####Ordered list
-                
-1. Item A
-2. Item B
-3. Item C
-                
-----
-                    
-###Tables
-                    
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell 
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
-| Function name | Description                    |
-| ------------- | ------------------------------ |
-| `help()`      | Display the help window.       |
-| `destroy()`   | **Destroy your computer!**     |
-
-| Item      | Value |
-| --------- | -----:|
-| Computer  | $1600 |
-| Phone     |   $12 |
-| Pipe      |    $1 |
-
-| Left-Aligned  | Center Aligned  | Right Aligned |
-| :------------ |:---------------:| -----:|
-| col 3 is      | some wordy text | $1600 |
-| col 2 is      | centered        |   $12 |
-| zebra stripes | are neat        |    $1 |
-                
-----
-
-####HTML entities
-
-&copy; &  &uml; &trade; &iexcl; &pound;
-&amp; &lt; &gt; &yen; &euro; &reg; &plusmn; &para; &sect; &brvbar; &macr; &laquo; &middot; 
-
-X&sup2; Y&sup3; &frac34; &frac14;  &times;  &divide;   &raquo;
-
-18&ordm;C  &quot;  &apos;
-
-##Escaping for Special Characters
-
-\*literal asterisks\*
-
-##Markdown extras
-
-###GFM task list
-
-- [x] GFM task list 1
-- [x] GFM task list 2
-- [ ] GFM task list 3
-    - [ ] GFM task list 3-1
-    - [ ] GFM task list 3-2
-    - [ ] GFM task list 3-3
-- [ ] GFM task list 4
-    - [ ] GFM task list 4-1
-    - [ ] GFM task list 4-2
-
-###Emoji mixed :smiley:
-
-> Blockquotes :star:
-
-####GFM task lists & Emoji & fontAwesome icon emoji & editormd logo emoji :editormd-logo-5x:
-
-- [x] :smiley: @mentions, :smiley: #refs, [links](), **formatting**, and <del>tags</del> supported :editormd-logo:;
-- [x] list syntax required (any unordered or ordered list supported) :editormd-logo-3x:;
-- [x] [ ] :smiley: this is a complete item :smiley:;
-- [ ] []this is an incomplete item [test link](#) :fa-star: @pandao; 
-- [ ] [ ]this is an incomplete item :fa-star: :fa-gear:;
-    - [ ] :smiley: this is an incomplete item [test link](#) :fa-star: :fa-gear:;
-    - [ ] :smiley: this is  :fa-star: :fa-gear: an incomplete item [test link](#);
-            
-###TeX(LaTeX)
-   
-$$E=mc^2$$
-
-Inline $$E=mc^2$$ Inline，Inline $$E=mc^2$$ Inline。
-
-$$\(\sqrt{3x-1}+(1+x)^2\)$$
-                    
-$$\sin(\alpha)^{\theta}=\sum_{i=0}^{n}(x^i + \cos(f))$$
-                
-###FlowChart
-
-```flow
-st=>start: Login
-op=>operation: Login operation
-cond=>condition: Successful Yes or No?
-e=>end: To admin
-
-st->op->cond
-cond(yes)->e
-cond(no)->op
-```
-
-###Sequence Diagram
-                    
-```seq
-Andrew->China: Says Hello 
-Note right of China: China thinks\nabout it 
-China-->Andrew: How are you? 
-Andrew->>China: I am good thanks!
-```
-
-###End
+[role-group]: https://www.w3.org/TR/wai-aria/#group
+[role-region]: https://www.w3.org/TR/wai-aria/#region
+[aria-landmarks]: https://www.w3.org/TR/wai-aria/#landmark
