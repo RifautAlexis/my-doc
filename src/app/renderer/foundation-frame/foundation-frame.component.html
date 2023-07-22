@@ -1,0 +1,15 @@
+<div class="flex flex-col border rounded-md border-gray-500 p-5">
+  <button mat-icon-button class="self-end" (click)="onRevealCode()">
+    <mat-icon>code</mat-icon>
+  </button>
+
+  <div [hidden]="displayCode()">
+    <foundation-codes [filesCode]="filesCode()"></foundation-codes>
+  </div>
+  <div [hidden]="!displayCode()">
+    <foundation-examples
+      [hidden]="!displayCode()"
+      [componentName]="componentName"
+    ></foundation-examples>
+  </div>
+</div>

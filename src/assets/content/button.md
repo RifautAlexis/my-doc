@@ -3,9 +3,6 @@
 ## First example - ButtonOverviewExample
 <!--- example(ButtonOverviewExample) -->
 
-## Second example - ButtonTypesExample
-<!--- example(ButtonTypesExample) -->
-
 Angular Material buttons are native `<button>` or `<a>` elements enhanced with Material Design
 styling and ink ripples.
 

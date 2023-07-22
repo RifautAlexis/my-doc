@@ -1,3 +1,4 @@
+import { FoundationFrameComponent } from './app/renderer/foundation-frame/foundation-frame.component';
 import { routes } from './app/app-routing';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
@@ -8,7 +9,7 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { provideHttpClient } from '@angular/common/http';
 import { markedOptionsFactory } from './app/renderer/tools/foundation-token';
 import { createCustomElement } from '@angular/elements';
-import { FoundationExamplesComponent } from './app/renderer/foundation-examples/foundation-examples.component';
+import { FoundationExamplesComponent } from './app/renderer/foundation-frame/foundation-examples/foundation-examples.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -31,8 +32,13 @@ bootstrapApplication(AppComponent, {
 		FoundationExamplesComponent, // component for Angular element
 		{ injector: appRef.injector } // used to inject the component to the DOM
 	);
+  const foundationFrameComponent = createCustomElement(
+		FoundationFrameComponent, // component for Angular element
+		{ injector: appRef.injector } // used to inject the component to the DOM
+	);
 
 	// register in a browser
 	customElements.define('foundation-examples', foundationExamples);
+	customElements.define('foundation-frame', foundationFrameComponent);
 })
 .catch((err) => console.error(err));
