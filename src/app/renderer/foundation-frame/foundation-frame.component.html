@@ -3,12 +3,12 @@
     <mat-icon>code</mat-icon>
   </button>
 
-  <div [hidden]="displayCode()">
+  <div [hidden]="hideExampleCode()">
     <foundation-codes [filesCode]="filesCode()"></foundation-codes>
   </div>
-  <div [hidden]="!displayCode()">
+  <div [hidden]="!hideExampleCode()">
     <foundation-examples
-      [hidden]="!displayCode()"
+      [hidden]="!hideExampleCode()"
       [componentName]="componentName"
     ></foundation-examples>
   </div>

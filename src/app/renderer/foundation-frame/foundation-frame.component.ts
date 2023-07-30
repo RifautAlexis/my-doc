@@ -26,7 +26,7 @@ export class FoundationFrameComponent implements OnInit {
 
   @Input({ required: true, alias: 'componentname' }) componentName!: string;
 
-  displayCode: WritableSignal<boolean> = signal(false);
+  hideExampleCode: WritableSignal<boolean> = signal(true);
   filesCode = this.foundationFilesCodeService.filesCode;
   
   ngOnInit(): void {
@@ -38,6 +38,6 @@ export class FoundationFrameComponent implements OnInit {
   }
   
   onRevealCode(): void {
-    this.displayCode.set(!this.displayCode());
+    this.hideExampleCode.set(!this.hideExampleCode());
   }
 }
