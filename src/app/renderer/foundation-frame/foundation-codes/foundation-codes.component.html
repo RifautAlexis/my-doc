@@ -1,5 +1,5 @@
 <mat-tab-group>
   <mat-tab *ngFor="let fileName of filesNames" [label]="fileName">
-    {{ filesCode[fileName] }}
+    <pre><code #codeEle class="language-{{ getLanguage(fileName) }}">{{ filesCode[fileName] }}</code></pre>
   </mat-tab>
 </mat-tab-group>
