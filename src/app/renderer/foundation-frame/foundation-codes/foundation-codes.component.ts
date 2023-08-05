@@ -1,23 +1,29 @@
 import {
   AfterViewChecked,
   Component,
+  EventEmitter,
   Input,
+  Output,
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Language } from '../../config/highlight';
 import { HighlightService } from '../../highlight.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'foundation-codes',
   standalone: true,
-  imports: [CommonModule, MatTabsModule],
+  imports: [CommonModule, MatTabsModule, MatButtonModule, MatIconModule],
   templateUrl: './foundation-codes.component.html',
   styleUrls: ['./foundation-codes.component.scss'],
 })
 export class FoundationCodesComponent implements AfterViewChecked {
   highlightService = inject(HighlightService);
+
+  @Output() codeCopied = new EventEmitter<string>();
 
   private _filesCode: Record<string, string> = {};
 
@@ -58,5 +64,9 @@ export class FoundationCodesComponent implements AfterViewChecked {
       default:
         return Language.none;
     }
+  }
+
+  onCodeCopied(code: string): void {
+    this.codeCopied.emit(code);
   }
 }

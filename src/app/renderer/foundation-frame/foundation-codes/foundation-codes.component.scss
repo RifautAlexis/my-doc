@@ -1,0 +1,17 @@
+pre {
+  background-color: transparent;
+}
+
+button {
+  float: right;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  mat-icon {
+    float: right;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+}

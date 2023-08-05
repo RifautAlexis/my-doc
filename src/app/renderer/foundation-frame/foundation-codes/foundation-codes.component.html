@@ -1,5 +1,9 @@
 <mat-tab-group>
   <mat-tab *ngFor="let fileName of filesNames" [label]="fileName">
-    <pre><code #codeEle class="language-{{ getLanguage(fileName) }}">{{ filesCode[fileName] }}</code></pre>
+    <pre><code #codeEle class="language-{{ getLanguage(fileName) }}">{{ filesCode[fileName] }}</code>
+      <button mat-icon-button (click)="onCodeCopied(filesCode[fileName])">
+        <mat-icon>content_copy</mat-icon>
+      </button>
+    </pre>
   </mat-tab>
 </mat-tab-group>

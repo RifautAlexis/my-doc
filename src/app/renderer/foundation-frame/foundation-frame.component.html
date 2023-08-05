@@ -4,7 +4,7 @@
   </button>
 
   <div [hidden]="hideExampleCode()">
-    <foundation-codes [filesCode]="filesCode()"></foundation-codes>
+    <foundation-codes [filesCode]="filesCode()" (codeCopied)="onCodeCopied($event)"></foundation-codes>
   </div>
   <div [hidden]="!hideExampleCode()">
     <foundation-examples
