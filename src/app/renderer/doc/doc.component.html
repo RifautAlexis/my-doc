@@ -1,5 +1,9 @@
 <div class="flex">
-  <markdown class="flex-auto" [data]="markdown()" (ready)="onReady()"> </markdown>
+  <markdown class="flex-auto" [data]="markdown()" (ready)="onReady()">
+  </markdown>
 
-  <doc-side-nav class="ms-5 basis-1/12 h-screen sticky top-10" [headings]="headings"></doc-side-nav>
+  <doc-side-nav
+    class="ms-5 basis-1/12 h-screen sticky top-10"
+    [headings]="headings"
+  ></doc-side-nav>
 </div>

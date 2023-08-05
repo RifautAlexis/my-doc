@@ -10,7 +10,9 @@ export function markedOptionsFactory(): MarkedOptions {
 
       return text.replace(
         /\<\!\-\-\- example\(.+\) -->/,
-        `<foundation-frame componentname="${componentName}"></foundation-frame>`
+        `<div>
+            <foundation-frame componentname="${componentName}"></foundation-frame>
+          </div>`
       );
     }
 
