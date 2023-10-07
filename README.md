@@ -1,27 +1,28 @@
 # my-doc
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
+Throw away old-ish UX Word-like documentation (*cough* Jira, Confluence, and friends *cough*).
+Fork, clone, customize or wathever this project. Let's build a better Documentation World !
 
-## Development server
+## The Idea, the Concept
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Did you already experienced a nightmare documentation in your enterpise ? A Word-like document ? Infinitly long, poorly structured ? And Above all an unfriendly user experience ?
 
-## Code scaffolding
+I wanted to bring a possible solution based on what I've used. My models were Angular Material, Bootstrap.
+What it should have :
+- a left menu
+- a body displaying the documentation
+- within the documentation, a menu to navigate inside the displayed documentation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+On the technical point, it has been decided to use markdown and so a markdown library to parse and convert to HTML.
+As we also want to display our components with their corresponding code, two technologies from Angular are used :
+- [Angular elements](https://angular.io/guide/elements)
+- [Dynamic component loader](https://angular.io/guide/dynamic-component-loader)
 
-## Build
+## Technology Key
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+[Angular elements](https://angular.io/guide/elements)
+[Dynamic component loader](https://angular.io/guide/dynamic-component-loader)
 
-## Running unit tests
+## Customization
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To Do
