@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FoundationExamplesComponent } from './foundation-examples/foundation-examples.component';
 import { FoundationFilesCodeService } from './service/foundation-files-code.service';
-import { COMPONENT_MAP } from '../config/component-map';
+import { COMPONENT_MAP } from '../../config/component-map';
 import { FoundationCodesComponent } from './foundation-codes/foundation-codes.component';
 import { Clipboard } from '@angular/cdk/clipboard';
 
@@ -26,7 +26,6 @@ import { Clipboard } from '@angular/cdk/clipboard';
     FoundationCodesComponent,
   ],
   templateUrl: './foundation-frame.component.html',
-  styleUrls: ['./foundation-frame.component.scss'],
   providers: [FoundationFilesCodeService],
 })
 export class FoundationFrameComponent implements OnInit {
@@ -64,7 +63,7 @@ export class FoundationFrameComponent implements OnInit {
         pending.destroy();
       }
     };
-    
+
     attempt();
   }
 }

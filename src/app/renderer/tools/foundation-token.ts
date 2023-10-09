@@ -2,17 +2,18 @@ import { MarkedOptions, MarkedRenderer } from 'ngx-markdown';
 
 export function markedOptionsFactory(): MarkedOptions {
   const renderer = new MarkedRenderer();
+  const markdownExampleToken = /\<\!\-\-\- example\(.+\) -->/;
 
   renderer.html = (text: string) => {
-    if (new RegExp(/\<\!\-\-\- example\(.+\) -->/).test(text)) {
+    if (new RegExp(markdownExampleToken).test(text)) {
       const groups = text.match(/\<\!\-\-\- example\(([a-zA-Z]+)\) -->/);
       const componentName = groups![1];
 
       return text.replace(
-        /\<\!\-\-\- example\(.+\) -->/,
+        markdownExampleToken,
         `<div>
-            <foundation-frame componentname="${componentName}"></foundation-frame>
-          </div>`
+          <foundation-frame componentname="${componentName}"></foundation-frame>
+        </div>`
       );
     }
 

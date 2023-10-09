@@ -8,10 +8,26 @@ import {
 
 export const COMPONENT_MAP: Record<
   string,
-  { componentType: Type<any>; fileName: string }
+  { componentType: Type<any>; fileName: string, filePath: string }
 > = {
-  ButtonOverviewExample: { componentType: ButtonOverviewExample, fileName: 'button-overview-example.ts' },
-  ButtonTypesExample: { componentType: ButtonTypesExample, fileName: 'button-types-example.ts' },
-  CardFancyExample: { componentType: CardFancyExample, fileName: 'card-fancy-example.ts' },
-  CardMediaSizeExample: { componentType: CardMediaSizeExample, fileName: 'card-media-size-example.ts' },
+  ButtonOverviewExample: {
+    componentType: ButtonOverviewExample,
+    fileName: 'button-overview-example.ts',
+    filePath: 'button/button-overview/',
+  },
+  ButtonTypesExample: {
+    componentType: ButtonTypesExample,
+    fileName: 'button-types-example.ts',
+    filePath: 'button/button-types/',
+  },
+  CardFancyExample: {
+    componentType: CardFancyExample,
+    fileName: 'card-fancy-example.ts',
+    filePath: 'card/card-fancy/',
+  },
+  CardMediaSizeExample: {
+    componentType: CardMediaSizeExample,
+    fileName: 'card-media-size-example.ts',
+    filePath: 'card/card-media-size/',
+  },
 };

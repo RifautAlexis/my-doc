@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
-import { Language } from '../../config/highlight';
-import { HighlightService } from '../../highlight.service';
+import { Language } from '../../../config/highlight';
+import { HighlightService } from '../service/highlight.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 

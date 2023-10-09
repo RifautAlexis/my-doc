@@ -29,7 +29,7 @@
               "src/assets",
               {
                 "glob": "**/*",
-                "input": "src/app/components-examples/button/button-overview/",
+                "input": "src/app/components-examples/",
                 "output": "/assets/"
               }
             ],
