@@ -4,12 +4,12 @@
   </button>
 
   <div [hidden]="hideExampleCode()">
-    <foundation-codes [filesCode]="filesCode()" (codeCopied)="onCodeCopied($event)"></foundation-codes>
+    <code-viewer [filesCode]="filesCode()" (codeCopied)="onCodeCopied($event)"></code-viewer>
   </div>
   <div [hidden]="!hideExampleCode()">
-    <foundation-examples
+    <example-viewer
       [hidden]="!hideExampleCode()"
       [componentName]="componentName"
-    ></foundation-examples>
+    ></example-viewer>
   </div>
 </div>

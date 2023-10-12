@@ -1,4 +1,3 @@
-import { FoundationFrameComponent } from './app/renderer/doc/foundation-frame/foundation-frame.component';
 import { routes } from './app/app-routing';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
@@ -7,9 +6,10 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { provideHttpClient } from '@angular/common/http';
-import { markedOptionsFactory } from './app/renderer/tools/foundation-token';
+import { markedOptionsFactory } from './app/renderer/tools/doc-example-token';
 import { createCustomElement } from '@angular/elements';
-import { FoundationExamplesComponent } from './app/renderer/doc/foundation-frame/foundation-examples/foundation-examples.component';
+import { ExampleViewerComponent } from './app/renderer/doc/doc-example-viewer/components/example-viewer/example-viewer.component';
+import { DocExampleViewerComponent } from './app/renderer/doc/doc-example-viewer/doc-example-viewer.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -28,17 +28,17 @@ bootstrapApplication(AppComponent, {
   ],
 })
 .then((appRef: ApplicationRef) => {
-  const foundationExamples = createCustomElement(
-		FoundationExamplesComponent, // component for Angular element
+  const exampleViewerComponent = createCustomElement(
+		ExampleViewerComponent, // component for Angular element
 		{ injector: appRef.injector } // used to inject the component to the DOM
 	);
-  const foundationFrameComponent = createCustomElement(
-		FoundationFrameComponent, // component for Angular element
+  const docExampleViewerComponent = createCustomElement(
+		DocExampleViewerComponent, // component for Angular element
 		{ injector: appRef.injector } // used to inject the component to the DOM
 	);
 
 	// register in a browser
-	customElements.define('foundation-examples', foundationExamples);
-	customElements.define('foundation-frame', foundationFrameComponent);
+	customElements.define('example-viewer', exampleViewerComponent);
+	customElements.define('doc-example-viewer', docExampleViewerComponent);
 })
 .catch((err) => console.error(err));

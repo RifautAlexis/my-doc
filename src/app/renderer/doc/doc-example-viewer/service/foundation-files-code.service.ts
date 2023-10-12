@@ -12,7 +12,7 @@ import {
 import { COMPONENT_MAP } from '../../../config/component-map';
 
 @Injectable()
-export class FoundationFilesCodeService {
+export class FileLoaderService {
   private httpClient = inject(HttpClient);
 
   private filesCode$ = new BehaviorSubject<Record<string, string>>({});

@@ -12,7 +12,7 @@ export function markedOptionsFactory(): MarkedOptions {
       return text.replace(
         markdownExampleToken,
         `<div>
-          <foundation-frame componentname="${componentName}"></foundation-frame>
+          <doc-example-viewer componentname="${componentName}"></doc-example-viewer>
         </div>`
       );
     }

@@ -7,16 +7,16 @@ import {
   ViewContainerRef,
   inject,
 } from '@angular/core';
-import { FoundationDirective } from '../directive/foundation.directive';
-import { COMPONENT_MAP } from '../../../config/component-map';
+import { FoundationDirective } from '../../directive/foundation.directive';
+import { COMPONENT_MAP } from '../../../../config/component-map';
 
 @Component({
-  selector: 'foundation-examples',
+  selector: 'example-viewer',
   standalone: true,
-  templateUrl: 'foundation-examples.component.html',
+  templateUrl: 'example-viewer.component.html',
   imports: [],
 })
-export class FoundationExamplesComponent implements AfterViewInit {
+export class ExampleViewerComponent implements AfterViewInit {
   private changeDetection = inject(ChangeDetectorRef);
   private viewContainerRef = inject(ViewContainerRef);
 

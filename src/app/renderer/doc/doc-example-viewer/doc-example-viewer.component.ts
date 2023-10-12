@@ -9,39 +9,39 @@ import {
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { FoundationExamplesComponent } from './foundation-examples/foundation-examples.component';
-import { FoundationFilesCodeService } from './service/foundation-files-code.service';
+import { ExampleViewerComponent } from './components/example-viewer/example-viewer.component';
+import { FileLoaderService } from './service/foundation-files-code.service';
 import { COMPONENT_MAP } from '../../config/component-map';
-import { FoundationCodesComponent } from './foundation-codes/foundation-codes.component';
+import { CodeViewerComponent } from './components/code-viewer/code-viewer.component';
 import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
-  selector: 'foundation-frame',
+  selector: 'doc-example-viewer',
   standalone: true,
   imports: [
     CommonModule,
     MatButtonModule,
     MatIconModule,
-    FoundationExamplesComponent,
-    FoundationCodesComponent,
+    ExampleViewerComponent,
+    CodeViewerComponent,
   ],
-  templateUrl: './foundation-frame.component.html',
-  providers: [FoundationFilesCodeService],
+  templateUrl: './doc-example-viewer.component.html',
+  providers: [FileLoaderService],
 })
-export class FoundationFrameComponent implements OnInit {
-  private foundationFilesCodeService = inject(FoundationFilesCodeService);
+export class DocExampleViewerComponent implements OnInit {
+  private fileLoaderService = inject(FileLoaderService);
   private clipboard = inject(Clipboard);
 
   @Input({ required: true, alias: 'componentname' }) componentName!: string;
 
   hideExampleCode: WritableSignal<boolean> = signal(true);
-  filesCode = this.foundationFilesCodeService.filesCode;
+  filesCode = this.fileLoaderService.filesCode;
 
   ngOnInit(): void {
     const componentType = COMPONENT_MAP[this.componentName];
 
     if (!!componentType) {
-      this.foundationFilesCodeService.init(this.componentName);
+      this.fileLoaderService.init(this.componentName);
     }
   }
 

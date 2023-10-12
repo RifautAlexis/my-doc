@@ -8,19 +8,19 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
-import { Language } from '../../../config/highlight';
-import { HighlightService } from '../service/highlight.service';
+import { Language } from '../../../../config/highlight';
+import { HighlightService } from '../../service/highlight.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'foundation-codes',
+  selector: 'code-viewer',
   standalone: true,
   imports: [CommonModule, MatTabsModule, MatButtonModule, MatIconModule],
-  templateUrl: './foundation-codes.component.html',
-  styleUrls: ['./foundation-codes.component.scss'],
+  templateUrl: './code-viewer.component.html',
+  styleUrls: ['./code-viewer.component.scss'],
 })
-export class FoundationCodesComponent implements AfterViewChecked {
+export class CodeViewerComponent implements AfterViewChecked {
   highlightService = inject(HighlightService);
 
   @Output() codeCopied = new EventEmitter<string>();
