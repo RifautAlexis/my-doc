@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -64,7 +65,7 @@ export class FileLoaderService {
   }
 
   private loadFileCode(filePath: string, fileName: string): Observable<string> {
-    return this.httpClient.get(`assets/${filePath}${fileName}`, {
+    return this.httpClient.get(`${environment.codeExampleBasePath}/${filePath}${fileName}`, {
       responseType: 'text',
     });
   }

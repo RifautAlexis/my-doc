@@ -4,7 +4,7 @@ export function markedOptionsFactory(): MarkedOptions {
   const renderer = new MarkedRenderer();
   const markdownExampleToken = /\<\!\-\-\- example\(.+\) -->/;
 
-  renderer.html = (text: string) => {
+  renderer.html = (text: string): string => {
     if (new RegExp(markdownExampleToken).test(text)) {
       const groups = text.match(/\<\!\-\-\- example\(([a-zA-Z]+)\) -->/);
       const componentName = groups![1];

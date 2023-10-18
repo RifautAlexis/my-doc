@@ -30,7 +30,7 @@
               {
                 "glob": "**/*",
                 "input": "src/app/components-examples/",
-                "output": "/assets/"
+                "output": "/assets/code-examples"
               }
             ],
             "styles": [
@@ -69,7 +69,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

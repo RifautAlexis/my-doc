@@ -11,7 +11,8 @@ import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { DocSideNavComponent } from '../doc-side-nav/doc-side-nav.component';
+import { DocSideNavComponent } from './doc-side-nav/doc-side-nav.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'doc',
@@ -48,14 +49,14 @@ export class DocComponent implements OnInit {
       .querySelectorAll('h1, h2');
   }
 
-  private getMarkdownFile() {
+  private getMarkdownFile(): void {
     this.componentName = this.route.snapshot.paramMap.get('component');
     let markdownUrl: string;
 
     if (!!!this.componentName) {
-      markdownUrl = 'assets/content/getting-started.md';
+      markdownUrl = `${environment.markdownContentBasePath}/getting-started.md`;
     } else {
-      markdownUrl = `assets/content/${this.componentName}.md`;
+      markdownUrl = `${environment.markdownContentBasePath}/${this.componentName}.md`;
     }
 
     this.httpClient
@@ -66,7 +67,7 @@ export class DocComponent implements OnInit {
         next: (data) => {
           this.markdown.set(data);
         },
-        error: (err) => {
+        error: (_) => {
           this.router.navigate(['']);
         },
       });

@@ -38,8 +38,6 @@ export class CodeViewerComponent implements AfterViewChecked {
 
   filesNames: string[] = [];
 
-  constructor() {}
-
   ngAfterViewChecked(): void {
     this.highlightService.highlightCodeExample();
   }
