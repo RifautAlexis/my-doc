@@ -1,12 +1,16 @@
 # Examples
 
 ## First example - ButtonOverviewExample
-<!--- example(ButtonOverviewExample) -->
+<!-- example(
+  {
+    "componentName": "ButtonOverviewExample",
+    "basePath": "button/button-overview/",
+    "fileName": "button-overview-example.ts"
+    }
+) -->
 
 Angular Material buttons are native `<button>` or `<a>` elements enhanced with Material Design
 styling and ink ripples.
-
-<!-- example(button-overview) -->
 
 Native `<button>` and `<a>` elements are always used in order to provide the most straightforward
 and accessible experience for users. A `<button>` element should be used whenever some _action_

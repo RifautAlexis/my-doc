@@ -31,7 +31,7 @@ To Do
 A specific markdownd file is fetch according to the page we are landing on.
 When it is fully fetch, it is given to [ngx-markdown](https://www.npmjs.com/package/ngx-markdown) to be convert into HTML. This process is enhanced to convert the below token to a playable component ([in details](#playable-component)).
 ```
-<!--- example(MyComponentName) -->
+<!-- example(MyComponentName) -->
 ```
 
 ## Playable Component

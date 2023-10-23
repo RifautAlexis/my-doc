@@ -30,7 +30,7 @@
               {
                 "glob": "**/*",
                 "input": "src/app/components-examples/",
-                "output": "/assets/code-examples"
+                "output": "/assets/components-examples"
               }
             ],
             "styles": [

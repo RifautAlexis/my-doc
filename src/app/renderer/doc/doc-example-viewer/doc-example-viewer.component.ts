@@ -10,8 +10,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ExampleViewerComponent } from './components/example-viewer/example-viewer.component';
-import { FileLoaderService } from './service/foundation-files-code.service';
-import { COMPONENT_MAP } from '../../config/component-map';
+import { FileLoaderService } from './service/code-file-loader.service';
 import { CodeViewerComponent } from './components/code-viewer/code-viewer.component';
 import { Clipboard } from '@angular/cdk/clipboard';
 
@@ -33,15 +32,15 @@ export class DocExampleViewerComponent implements OnInit {
   private clipboard = inject(Clipboard);
 
   @Input({ required: true, alias: 'componentname' }) componentName!: string;
+  @Input({ required: true, alias: 'basepath' }) basePath!: string;
+  @Input({ required: true, alias: 'filename' }) fileName!: string;
 
   hideExampleCode: WritableSignal<boolean> = signal(true);
   filesCode = this.fileLoaderService.filesCode;
 
   ngOnInit(): void {
-    const componentType = COMPONENT_MAP[this.componentName];
-
-    if (!!componentType) {
-      this.fileLoaderService.init(this.componentName);
+    if (!!this.componentName && !!this.basePath && !!this.fileName) {
+      this.fileLoaderService.init(this.basePath, this.fileName);
     }
   }
 

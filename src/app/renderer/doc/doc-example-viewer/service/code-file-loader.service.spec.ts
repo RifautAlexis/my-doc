@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FileLoaderService } from './foundation-files-code.service';
+import { FileLoaderService } from './code-file-loader.service';
 
 describe('FileLoaderService', () => {
   let service: FileLoaderService;

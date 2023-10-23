@@ -10,7 +10,6 @@ import {
   map,
   of,
 } from 'rxjs';
-import { COMPONENT_MAP } from '../../../config/component-map';
 
 @Injectable()
 export class FileLoaderService {
@@ -25,9 +24,8 @@ export class FileLoaderService {
     }
   );
 
-  init(componentName: string): void {
-    const component = COMPONENT_MAP[componentName];
-    this.loadFileCode(component.filePath, component.fileName)
+  init(basePath: string, fileName: string): void {
+    this.loadFileCode(basePath, fileName)
       .pipe(
         concatMap((masterFileContent) => {
           const filesNames = [
@@ -37,11 +35,11 @@ export class FileLoaderService {
           ];
 
           let filesContent$: Observable<{ [key: string]: string }>[] = [
-            of({ [component.fileName]: masterFileContent }),
+            of({ [fileName]: masterFileContent }),
           ];
           filesNames.forEach((element) =>
             filesContent$.push(
-              this.loadFileCode(component.filePath, element[0]).pipe(
+              this.loadFileCode(basePath, element[0]).pipe(
                 map((data) => {
                   return {
                     [element[0]]: data,

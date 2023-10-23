@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
+  Type,
   ViewChild,
   ViewContainerRef,
   inject,
@@ -14,7 +15,6 @@ import { COMPONENT_MAP } from '../../../../config/component-map';
   selector: 'example-viewer',
   standalone: true,
   templateUrl: 'example-viewer.component.html',
-  imports: [],
 })
 export class ExampleViewerComponent implements AfterViewInit {
   private changeDetection = inject(ChangeDetectorRef);
@@ -26,10 +26,10 @@ export class ExampleViewerComponent implements AfterViewInit {
   foundationHost!: FoundationDirective;
 
   ngAfterViewInit(): void {
-    const component = COMPONENT_MAP[this.componentName];
+    const componentType = COMPONENT_MAP[this.componentName];
 
-    if (!!component) {
-      this.viewContainerRef.createComponent(component.componentType);
+    if (!!componentType) {
+      this.viewContainerRef.createComponent(componentType);
       this.changeDetection.detectChanges();
     }
   }

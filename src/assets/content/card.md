@@ -1,14 +1,24 @@
 # Examples
 
 ## First example - ButtonOverviewExample
-<!--- example(CardFancyExample) -->
+<!-- example(
+  {
+    "componentName": "CardFancyExample",
+    "basePath": "card/card-fancy/",
+    "fileName": "card-fancy-example.ts"
+    }
+) -->
 
 ## Second example - ButtonTypesExample
-<!--- example(CardMediaSizeExample) -->
+<!-- example(
+  {
+    "componentName": "CardMediaSizeExample",
+    "basePath": "card/card-media-size/",
+    "fileName": "card-media-size-example.ts"
+    }
+) -->
 
 `<mat-card>` is a content container for text, photos, and actions in the context of a single subject.
-
-<!-- example(card-overview) -->
 
 # Basic card sections
 
