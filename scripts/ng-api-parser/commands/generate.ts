@@ -1,5 +1,5 @@
 import { CommandModule } from 'yargs';
-import { apiDocGenerator } from "../src/api-doc-generator";
+import { apiParser } from '../src/api-parser';
 
 export const generateCommand: CommandModule = {
   command: ['generate'],
@@ -17,30 +17,6 @@ export const generateCommand: CommandModule = {
     return yargs;
   },
   handler: async (argv: any) => {
-    // console.log(`${argv['path']} is the chosen path to document`);
-    apiDocGenerator(argv['path']);
+    apiParser(argv['path']);
   },
 };
-
-// yargs(hideBin(process.argv))
-//   .scriptName('ng-api-parser')
-//   .usage('$0 <cmd> [args]')
-//   .command(
-//     'generate',
-//     'Generate an api documention',
-//     (yargs) => {
-//       yargs.option('path', {
-//         describe: 'path to the directory to analyze',
-//         demandOption: true,
-//         type: 'string',
-//         normalize: true,
-//         requiresArg: true,
-//         string: true,
-//       });
-//     },
-//     (argv) => {
-//       console.log(`${argv['path']} is the chosen path to document`);
-//       // parser(argv['path'] as string);
-//     }
-//   )
-//   .help().argv;

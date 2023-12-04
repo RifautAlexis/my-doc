@@ -1,62 +1,91 @@
-export interface ComponentStructure {
-  imports?: string[];
-  classDecorators?: Array<ComponentDecorator | InjectableDecorator>;
-  className: string;
-  isExported: boolean;
-  implements?: string[];
-  extends?: string[];
-  inputDecorators?: InputDecorator;
-  outputDecorators?: OutputDecorator;
+namespace cs {
+  export interface FileContent {
+    imports?: string[];
+    content?: Array<ComponentStructure | InterfaceStructure | EnumStructure | FunctionStructure>;
+  }
+
+  export interface ComponentStructure extends StructureKind{
+    classDecorators?: Decorator[];
+    className: string;
+    comment?: string;
+    isExported: boolean;
+    implements?: string[];
+    extends?: string[];
+    inputDecorators?: PropertyDecorator[];
+    outputDecorators?: PropertyDecorator[];
+    properties?: Property[];
+  }
+
+  export enum DecoratorType {
+    Injectable = 'Injectable',
+    Component = 'Component',
+    Input = 'Input',
+    Output = 'Output',
+  }
+
+  export enum ContentKind {
+    Class = 'class',
+    Interface = 'interface',
+    Enum = 'enum',
+    Function = 'function',
+  }
+
+  export interface Decorator {
+    kind: DecoratorType;
+    arguments?: Array<PropertyAssignmentParsed[]>;
+  }
+
+  export interface ClassDecorator extends Decorator {}
+
+  export interface Property {
+    name: string;
+    visibility: Visibility;
+    comment?: string;
+    isOptional: boolean;
+    type?: string;
+    defaultValue?: defaultValue;
+  }
+
+  export type PropertyDecorator = Property & Decorator;
+
+  export enum Visibility {
+    Public,
+    Private,
+    Protected,
+  }
+
+  export type defaultValue =
+    | string
+    | number
+    | boolean
+    | Object
+    | Array<string | number | boolean | Object>;
+
+  export interface PropertyAssignmentParsed {
+    name: string;
+    value: defaultValue;
+  }
+
+  export interface CallExpressionParsed {
+    name: DecoratorType;
+    values: Array<PropertyAssignmentParsed[]> | undefined;
+  }
+
+  interface InterfaceStructure extends StructureKind{
+    
+  }
+
+  interface EnumStructure extends StructureKind{
+    
+  }
+
+  interface FunctionStructure extends StructureKind{
+    
+  }
+
+  interface StructureKind {
+    kind: ContentKind;
+  }
 }
 
-export enum DecoratorType {
-  Injectable = 0,
-  Component = 1,
-  Input = 2,
-  Output = 3,
-}
-
-export interface Decorator {
-  kind: DecoratorType;
-}
-
-export interface ComponentDecorator extends Decorator {
-  readonly kind: DecoratorType.Component,
-  selector?: string;
-  standalone?: boolean;
-  templateUrl?: string;
-  styleUrls?: string[];
-  imports?: string[];
-}
-
-export interface InjectableDecorator extends Decorator {
-  readonly kind: DecoratorType.Injectable,
-  providedIn?: string;
-}
-
-export interface InputDecorator extends Decorator {
-  readonly kind: DecoratorType.Input,
-  name: string;
-  isrequired?: boolean;
-  isOptional: boolean;
-  type: string;
-  defaultValue?: defaultValue;
-  visibility: Visibility;
-}
-
-export interface OutputDecorator extends Decorator {
-  readonly kind: DecoratorType.Output,
-  name: string;
-  type: string;
-  isOptional: boolean;
-  defaultValue?: defaultValue;
-  visibility: Visibility;
-}
-
-export enum Visibility {
-  Public,
-  Private,
-  Protected,
-}
-
-export type defaultValue = string | number | boolean | Object | Array<string | number | boolean | Object>;
+export default cs;
