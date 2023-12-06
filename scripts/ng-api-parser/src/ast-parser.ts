@@ -1,31 +1,26 @@
 import cs from './component-structure';
-import {
-  SourceFile,
-  SyntaxKind,
-  ImportDeclaration,
-  ClassDeclaration,
-  TypeChecker,
-} from 'typescript';
+import ts from 'typescript';
 import { classParser } from './parsers/class-parser';
 
-export function astParser(sourceFile: SourceFile, checker: TypeChecker): cs.ComponentStructure {
-  return sourceFileParser(sourceFile, checker);
-}
-
-function sourceFileParser(sourceFile: SourceFile, checker: TypeChecker): cs.ComponentStructure {
+export function sourceFileParser(sourceFile: ts.SourceFile, checker: ts.TypeChecker): cs.ComponentStructure {
   let fileContent: Partial<cs.FileContent> = {};
 
   sourceFile.forEachChild((child) => {
 
     switch (child.kind) {
-      case SyntaxKind.ImportDeclaration:
-        const importDeclaration: ImportDeclaration = child as ImportDeclaration;
+      case ts.SyntaxKind.ImportDeclaration:
+        const importDeclaration: ts.ImportDeclaration = child as ts.ImportDeclaration;
         fileContent.imports = [...(fileContent.imports || []), importDeclarationParser(importDeclaration)];
         break;
 
-      case SyntaxKind.ClassDeclaration:
-        const classDeclaration: ClassDeclaration = child as ClassDeclaration;
+      case ts.SyntaxKind.ClassDeclaration:
+        const classDeclaration: ts.ClassDeclaration = child as ts.ClassDeclaration;
         fileContent.content = [...(fileContent.content || []), classParser(classDeclaration, checker)];
+        break;
+
+      case ts.SyntaxKind.EnumDeclaration:
+      case ts.SyntaxKind.InterfaceDeclaration:
+      case ts.SyntaxKind.FunctionDeclaration:
         break;
 
       default:
@@ -40,7 +35,7 @@ function sourceFileParser(sourceFile: SourceFile, checker: TypeChecker): cs.Comp
 }
 
 function importDeclarationParser(
-  node: ImportDeclaration
+  node: ts.ImportDeclaration
 ): string {
     return node.getText();
 }
